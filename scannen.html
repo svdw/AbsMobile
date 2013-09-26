@@ -24,10 +24,11 @@
 
             jQuery.support.cors = true; // force cross-site scripting
         </script>
+        <script type="text/javascript" src="js/index.js"></script>
     </head>
     <body> 
 	
-		<div data-role="page" id="home" data-add-back-btn="false">
+		<div data-role="page" id="scannen" data-add-back-btn="false">
 			<div data-role="header" data-position="fixed">
 				<h1>Artikelenbeheersysteem</h1>
 			</div>
@@ -63,7 +64,7 @@
 
         <script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript">
-		    $(document).ready(function () {
+		    $(document).on('pagebeforeshow', '#scannen', function () {
 		        // are we running in native app or in browser?
 		        window.isphone = false;
 		        if (document.URL.indexOf("http://") === -1
@@ -100,6 +101,35 @@
 	                      getArtikelByBarcode($('#txtBarcode').val());
 	                  }
 	              });
+	          }
+
+	          function getArtikelByBarcode(barcode) {
+	              var param = JSON.stringify({ barcode: barcode });
+
+	              $.ajax({
+	                  type: "POST",
+	                  url: serviceUrl + "GetArtikelByBarcode",
+	                  data: param,
+	                  contentType: "application/json; charset=utf-8",
+	                  dataType: "json",
+	                  success: function (msg) {
+	                      loadAtikelDetail(msg.d);
+	                  },
+	                  error: function (xhr, ajaxOptions, thrownError) {
+	                      alert(xhr.status + ' ' + xhr.response + ' ' + xhr.responseText + ' ' + thrownError);
+	                  }
+	              });
+	          }
+
+	          function loadAtikelDetail(data) {
+	              $("#artikelTitel").html('<span style="font-weight: bold;">' + data.Titel + '</span>').css('text-align', 'center');
+	              $("#artikelBeschrijving").html('<p>' + data.Beschrijving + '</p>').css('text-align', 'center');
+	              //$("#artikelAfbeelding").attr("src", "data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==");
+	              $("#artikelAfbeelding").attr("src", "data:image/jpg;base64," + data.Afbeelding);
+
+	              var $img = $('container_img img');
+	              var h = $img.height();
+	              $img.css('margin-top', +h / -2 + "px"); //margin-top should be negative half of image height. This will center the image vertically when combined with position:absolute and top:50%.
 	          }
         </script>
     </body>
