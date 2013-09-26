@@ -36,7 +36,6 @@
     <gap:splash src="res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024" />
     <gap:splash src="res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768" />
 
-    <access origin="http://magazijn.vtir.be" />
-    <access origin="http://code.jquery.com" />
+    <access origin="*" />
  
 </widget>
