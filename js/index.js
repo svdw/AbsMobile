@@ -221,17 +221,22 @@ function loadAtikelDetail(data) {
 function loadAtikelDetailAfterBarcodeScan(data) {
     $("#artikel_titel").css('text-align', 'center').append('<h2>' + data.Titel + '<h2>');
     $("#artikel_beschrijving").html('<p>' + data.Beschrijving + '</p>').css('text-align', 'center');
-    $("#artikel_afbeelding").attr("src", "data:image/jpg;base64," + data.Afbeelding);
+    $("#artikel_img").attr("src", "data:image/jpg;base64," + data.Afbeelding);
 
     $("#lblEenheid").html(data.Eenheid);
     $("#lblStock").html(data.Stock);
     $("#lblPrijs").html(data.Catalogusprijs);
     $("#lblLeverancier").html(data.Leverancier);
 
+    $("#artikeldetail_container").show();
+
     return false;
 }
 
 $(document).on('pagebeforeshow', '#scannen', function () {
+    //Hide the fields
+    $("#artikeldetail_container").hide();
+
     // are we running in native app or in browser?
     window.isphone = false;
     if (document.URL.indexOf("http://") === -1
