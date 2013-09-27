@@ -131,7 +131,7 @@
 			<div data-role="content">
                 <div class="artikeldetail_container">
                     <div id="artikelTitel" style="margin: 5;"></div>
-                    <div id="artikelAfbeelding_container">
+                    <div class="artikelAfbeelding_container">
                         <img id="artikelAfbeelding" />
                     </div>
                     <div>
@@ -178,33 +178,21 @@
                 </div>
                 <div class="artikeldetail_container">
                     <div id="artikel_titel" style="margin: 5;"></div>
-                    <div>&nbsp;</div>
-                    <table>
-                        <tr>
-                            <td rowspan="4">
-                                <img id="artikel_img" />
-                            </td>
-                            <td>
-                                <span id="lblEenheid"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span id="lblStock"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span id="lblPrijs"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span id="lblLeverancier"></span>
-                            </td>
-                        </tr>
-                    </table>
-                    <div>&nbsp;</div>
+                    <div class="artikelAfbeelding_container">
+                        <img id="artikel_img" />
+                    </div>
+                    <div>
+                        Eenheid: <span id="lblEenheid"></span>
+                    </div>
+                    <div>
+                        Stock: <span id="lblStock"></span>
+                    </div>
+                    <div>
+                        Catalogusprijs: <span id="lblPrijs"></span>
+                    </div> 
+                    <div>
+                        Leverancier: <span id="lblLeverancier"></span>
+                    </div>      
 				    <div id="artikel_beschrijving"></div>
                 </div>
 			</div>
