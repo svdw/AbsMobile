@@ -1,6 +1,6 @@
 /* Global */
-//var serviceUrl = "http://localhost:2914/Services/ArtikelWebService.svc/";
-var serviceUrl = "http://magazijn.vtir.be/Services/ArtikelWebService.svc/";
+var serviceUrl = "http://localhost:2914/Services/ArtikelWebService.svc/";
+//var serviceUrl = "http://magazijn.vtir.be/Services/ArtikelWebService.svc/";
 
 /* pages */
 
@@ -219,8 +219,11 @@ function loadAtikelDetail(data) {
 }
 
 function loadAtikelDetailAfterBarcodeScan(data) {
-    $("#artikel_titel").css('text-align', 'center').append('<h2>' + data.Titel + '<h2>');
-    $("#artikel_beschrijving").html('<p>' + data.Beschrijving + '</p>').css('text-align', 'center');
+    $("#barcode_artikeldetail").show();
+    
+    $("#artikel_titel").append('<h2>' + data.Titel + '<h2>');
+    //$("#artikel_beschrijving").html('<p>' + data.Beschrijving + '</p>').css('text-align', 'center');
+    $("#artikel_beschrijving").html('<p>' + data.Beschrijving + '</p>')
     $("#artikel_img").attr("src", "data:image/jpg;base64," + data.Afbeelding);
 
     $("#lblEenheid").html(data.Eenheid);
@@ -228,14 +231,12 @@ function loadAtikelDetailAfterBarcodeScan(data) {
     $("#lblPrijs").html(data.Catalogusprijs);
     $("#lblLeverancier").html(data.Leverancier);
 
-    $("#artikeldetail_container").show();
-
     return false;
 }
 
 $(document).on('pagebeforeshow', '#scannen', function () {
     //Hide the fields
-    $("#artikeldetail_container").hide();
+    $("#barcode_artikeldetail").hide();
 
     // are we running in native app or in browser?
     window.isphone = false;
@@ -259,11 +260,9 @@ function onDeviceReady() {
         scanner.scan(
 	                  function (result) {
 	                      getArtikelByBarcode(result.text);
-	                      return false;
 	                  },
 	                  function (error) {
 	                      alert("Scanning failed: " + error);
-	                      return false;
 	                  }
 	                );
     });
