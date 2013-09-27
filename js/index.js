@@ -5,6 +5,7 @@ var serviceUrl = "http://magazijn.vtir.be/Services/ArtikelWebService.svc/";
 /* pages */
 
 $(document).on('pagebeforeshow', '#productgroep1', function () {
+    $.mobile.showPageLoadingMsg();
 
     var lvwProductgroep1 = $("#productgroep_1");
     lvwProductgroep1.children().remove();
@@ -150,17 +151,23 @@ function loadArtikelsByGroep(detailproductgroepID) {
 
             for (i = 0; i <= msg.d.length - 1; i++) {
                 var li = $("<li></li>"),
-                    a = $("<a></a>").attr("href", "#details").attr("data-transition", "slide").text(msg.d[i].Titel),
+                    img = $("<img />").attr("src", "data:image/jpg;base64," + msg.d[i].Afbeelding),
+                    a = $("<a></a>").attr("href", "#details").attr("data-transition", "slide"),
+                    h2 = $("<h2>" + msg.d[i].Titel + "</h2>"),
+                    p = $("<p>Artikelnummer: " + msg.d[i].ArtikelNr + "</p>"),
                     uniqueId = $('<input>').attr({
-                    type: 'hidden',
-                    value: msg.d[i].ID
-                });
+                        type: 'hidden',
+                        value: msg.d[i].ID
+                    });
 
                 $(li).tap(function () {
                     var hiddenElement = $(this).find("input");
                     loadArtikelDetails($(hiddenElement).val());
                 });
-                                
+
+                a.append(img);
+                a.append(h2);
+                a.append(p);
                 $(li).append(uniqueId);
                 $(li).append(a);
                 lvwArtikelOverzicht.append(li);
@@ -195,65 +202,33 @@ function loadArtikelDetails(artikelID) {
 }
 
 function loadAtikelDetail(data) {
-    $("#artikelTitel").html('<span style="font-weight: bold;">' + data.Titel + '</span>').css('text-align', 'center');
-    $("#artikelBeschrijving").html('<p>' + data.Beschrijving + '</p>').css('text-align', 'center');
-    //$("#artikelAfbeelding").attr("src", "data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==");
+    $("#artikelTitel").html('<span style="font-weight: bold;">' + data.Titel + '</span>');
+    $("#artikelBeschrijving").html('<p>' + data.Beschrijving + '</p>');
     $("#artikelAfbeelding").attr("src", "data:image/jpg;base64," + data.Afbeelding);
 
+    $("#lblArtikelEenheid").html(data.Eenheid);
+    $("#lblArtikelStock").html(data.Stock);
+    $("#lblArtikelPrijs").html(data.Catalogusprijs);
+    $("#lblArtikelLeverancier").html(data.Leverancier);
+    /*
     var $img = $('container_img img'),
         h = $img.height();
     $img.css('margin-top', + h / -2 + "px"); //margin-top should be negative half of image height. This will center the image vertically when combined with position:absolute and top:50%.
-
+    */
     return false;
 }
 
-$(document).on('pagebeforeshow', '#zoekartikels', function () {
-    GetAllArtikels();
-});
+function loadAtikelDetailAfterBarcodeScan(data) {
+    $("#artikel_titel").css('text-align', 'center').append('<h2>' + data.Titel + '<h2>');
+    $("#artikel_beschrijving").html('<p>' + data.Beschrijving + '</p>').css('text-align', 'center');
+    $("#artikel_afbeelding").attr("src", "data:image/jpg;base64," + data.Afbeelding);
 
-function GetAllArtikels() {
-    var lvwOverzicht = $("#overzicht");
-    lvwOverzicht.children().remove();
+    $("#lblEenheid").html(data.Eenheid);
+    $("#lblStock").html(data.Stock);
+    $("#lblPrijs").html(data.Catalogusprijs);
+    $("#lblLeverancier").html(data.Leverancier);
 
-    $.ajax({
-        type: "GET",
-        url: serviceUrl + "GetArtikels",
-        data: "{}",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (msg) {
-
-            for (i = 0; i <= msg.d.length - 1; i++) {
-                var li = $("<li></li>"),
-                    a = $("<a></a>").attr("href", "#details").attr("data-transition", "slide").text(msg.d[i].Titel),
-                    uniqueId = $('<input>').attr({
-                    type: 'hidden',
-                    value: msg.d[i].ID
-                });
-
-                $(li).tap(function () {
-                    var hiddenElement = $(this).find("input");
-                    loadArtikelDetail($(hiddenElement).val());
-                });
-
-                $(li).append(uniqueId);
-                $(li).append(a);
-                lvwOverzicht.append(li);
-            }
-            lvwOverzicht.listview("refresh");
-
-            return false;
-            /*
-            var id = msg.d.ID;
-            var st = msg.d.SomeText;
-            var sl = msg.d.SomeList;
-            var i = sl.length;
-            var firstSlItem = sl[0];*/
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            alert(xhr.status + ' ' + xhr.response + ' ' + xhr.responseText + ' ' + thrownError);
-        }
-    });
+    return false;
 }
 
 $(document).on('pagebeforeshow', '#scannen', function () {
@@ -307,7 +282,7 @@ function getArtikelByBarcode(barcode) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (msg) {
-            loadAtikelDetail(msg.d);
+            loadAtikelDetailAfterBarcodeScan(msg.d);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status + ' ' + xhr.response + ' ' + xhr.responseText + ' ' + thrownError);

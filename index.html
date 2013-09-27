@@ -29,7 +29,6 @@
 				<ul>
 					<li><a href="index.html" data-icon="home" data-iconpos="top" class="ui-btn-active">Start</a></li>
                     <li><a href="#productgroep1" data-icon="grid" data-iconpos="top">Artikels</a></li>
-					<li><a href="#zoekartikels" data-icon="search" data-iconpos="top">Zoek artikel</a></li>
                     <li><a href="#scannen" data-icon="search" data-iconpos="top">Scannen</a></li>
 				</ul>
 			</div><!-- /navbar -->
@@ -50,7 +49,6 @@
 				<ul>
 					<li><a href="index.html" data-icon="home" data-iconpos="top">Start</a></li>
                     <li><a href="#productgroep1" data-icon="grid" data-iconpos="top" class="ui-btn-active">Artikels</a></li>
-					<li><a href="#zoekartikels" data-icon="search" data-iconpos="top">Zoek artikel</a></li>
                     <li><a href="#scannen" data-icon="search" data-iconpos="top">Scannen</a></li>
 				</ul>
 			</div><!-- /navbar -->
@@ -70,12 +68,11 @@
 				<ul>
 					<li><a href="index.html" data-icon="home" data-iconpos="top">Start</a></li>
                     <li><a href="#productgroep1" data-icon="grid" data-iconpos="top" class="ui-btn-active">Artikels</a></li>
-					<li><a href="#zoekartikels" data-icon="search" data-iconpos="top">Zoek artikel</a></li>
                     <li><a href="#scannen" data-icon="search" data-iconpos="top">Scannen</a></li>
 				</ul>
 			</div><!-- /navbar -->
 			<div data-role="content">
-				<ul data-role="listview" data-inset="true" data-filter="true" id="productgroep_2">                
+				<ul data-role="listview" data-inset="true" data-filter="false" id="productgroep_2">                
 				</ul>
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed">				
@@ -90,12 +87,11 @@
 				<ul>
 					<li><a href="index.html" data-icon="home" data-iconpos="top">Start</a></li>
                     <li><a href="#productgroep1" data-icon="grid" data-iconpos="top" class="ui-btn-active">Artikels</a></li>
-					<li><a href="#zoekartikels" data-icon="search" data-iconpos="top">Zoek artikel</a></li>
                     <li><a href="#scannen" data-icon="search" data-iconpos="top">Scannen</a></li>
 				</ul>
 			</div><!-- /navbar -->
 			<div data-role="content">
-				<ul data-role="listview" data-inset="true" data-filter="true" id="productgroep_3">                
+				<ul data-role="listview" data-inset="true" data-filter="false" id="productgroep_3">                
 				</ul>
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed">				
@@ -110,12 +106,11 @@
 				<ul>
 					<li><a href="index.html" data-icon="home" data-iconpos="top">Start</a></li>
                     <li><a href="#productgroep1" data-icon="grid" data-iconpos="top" class="ui-btn-active">Artikels</a></li>
-					<li><a href="#zoekartikels" data-icon="search" data-iconpos="top">Zoek artikel</a></li>
                     <li><a href="#scannen" data-icon="search" data-iconpos="top">Scannen</a></li>
 				</ul>
 			</div><!-- /navbar -->
 			<div data-role="content">
-				<ul data-role="listview" data-inset="true" data-filter="true" id="lvwArtikels">                
+				<ul data-role="listview" data-inset="true" data-filter="false" id="lvwArtikels">                
 				</ul>
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed">				
@@ -130,63 +125,33 @@
 				<ul>
 					<li><a href="index.html" data-icon="home" data-iconpos="top">Start</a></li>
                     <li><a href="#productgroep1" data-icon="grid" data-iconpos="top" class="ui-btn-active">Artikels</a></li>
-					<li><a href="#zoekartikels" data-icon="search" data-iconpos="top">Zoek artikel</a></li>
                     <li><a href="#scannen" data-icon="search" data-iconpos="top">Scannen</a></li>
 				</ul>
 			</div><!-- /navbar -->
 			<div data-role="content">
                 <div class="artikeldetail_container">
                     <div id="artikelTitel" style="margin: 5;"></div>
-                    <div class="container_img" style="margin: 5; text-align: center;">
+                    <div id="artikelAfbeelding_container">
                         <img id="artikelAfbeelding" />
+                    </div>
+                    <div>
+                        <div>
+                            Eenheid: <span id="lblArtikelEenheid"></span>
+                        </div>
+                        <div>
+                            Stock: <span id="lblArtikelStock"></span>
+                        </div>
+                        <div>
+                            Catalogusprijs: <span id="lblArtikelPrijs"></span>
+                        </div>
+                        <div>
+                            Leverancier: <span id="lblArtikelLeverancier"></span>
+                        </div>
                     </div>
 				    <div id="artikelBeschrijving"></div>
                 </div>
 			</div>
             <div data-role="footer" data-id="foo1" data-position="fixed"></div><!-- /footer -->
-		</div>
-
-        <div data-role="page" id="zoekartikels" data-add-back-btn="false">
-			<div data-role="header" data-position="fixed">
-				<h1>Artikelenbeheersysteem</h1>
-			</div>
-			<div data-role="navbar">
-				<ul>
-					<li><a href="index.html" data-icon="home" data-iconpos="top">Start</a></li>
-                    <li><a href="#productgroep1" data-icon="grid" data-iconpos="top">Artikels</a></li>
-					<li><a href="#zoekartikels" data-icon="search" data-iconpos="top" class="ui-btn-active">Zoek artikel</a></li>
-                    <li><a href="#scannen" data-icon="search" data-iconpos="top">Scannen</a></li>
-				</ul>
-			</div><!-- /navbar -->
-			<div data-role="content">
-				<ul data-role="listview" data-inset="true" data-filter="true" id="overzicht">                
-				</ul>
-			</div>
-			</div><!-- /footer -->
-		</div>
-
-        <div data-role="page" id="zoeken" data-add-back-btn="true">
-			<div data-role="header" data-position="fixed">
-				<h1>Artikelenbeheersysteem</h1>
-			</div>
-			<div data-role="navbar">
-				<ul>
-					<li><a href="index.html" data-icon="home" data-iconpos="top">Start</a></li>
-                    <li><a href="#productgroep1" data-icon="grid" data-iconpos="top">Artikels</a></li>
-					<li><a href="#zoekartikels" data-icon="search" data-iconpos="top" class="ui-btn-active">Zoek artikel</a></li>
-                    <li><a href="#scannen" data-icon="search" data-iconpos="top">Scannen</a></li>
-				</ul>
-			</div><!-- /navbar -->
-			<div data-role="content">
-                <div class="artikeldetail_container">
-                    <div id="Div2" style="margin: 5;"></div>
-                    <div class="container_img" style="margin: 5; text-align: center;">
-                        <img id="Img1" />
-                    </div>
-				    <div id="Div3"></div>
-                </div>
-			</div>
-            <div data-role="footer" data-id="foo1" data-position="fixed"></div><!-- /footer --><!-- /footer -->
 		</div>
 
         <div data-role="page" id="scannen" data-add-back-btn="false">
@@ -197,7 +162,6 @@
 				<ul>
 					<li><a href="index.html" data-icon="home" data-iconpos="top">Start</a></li>
                     <li><a href="#productgroep1" data-icon="grid" data-iconpos="top">Artikels</a></li>
-					<li><a href="#zoekartikels" data-icon="search" data-iconpos="top">Zoek artikel</a></li>
                     <li><a href="#scannen" data-icon="search" data-iconpos="top" class="ui-btn-active">Scannen</a></li>
 				</ul>
 			</div><!-- /navbar -->
@@ -206,17 +170,42 @@
                     Scan artikel
                 </div>
 				<div>
-                    <input type="text" id="txtBarcode" />
+                    <label for="txtBarcode">Barcode:</label>
+				    <input type="text" name="txtBarcode" id="txtBarcode" value=""  />
                 </div>
                 <div>
                     <hr />
                 </div>
                 <div class="artikeldetail_container">
-                    <div id="Div1" style="margin: 5;"></div>
-                    <div class="container_img" style="margin: 5; text-align: center;">
-                        <img id="Img2" />
-                    </div>
-				    <div id="Div4"></div>
+                    <div id="artikel_titel" style="margin: 5;"></div>
+                    <div>&nbsp;</div>
+                    <table>
+                        <tr>
+                            <td rowspan="4">
+                                <img id="artikel_img" />
+                            </td>
+                            <td>
+                                <span id="lblEenheid"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span id="lblStock"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span id="lblPrijs"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span id="lblLeverancier"></span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>&nbsp;</div>
+				    <div id="artikel_beschrijving"></div>
                 </div>
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed">				
