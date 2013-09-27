@@ -1,6 +1,6 @@
 /* Global */
-var serviceUrl = "http://localhost:2914/Services/ArtikelWebService.svc/";
-//var serviceUrl = "http://magazijn.vtir.be/Services/ArtikelWebService.svc/";
+//var serviceUrl = "http://localhost:2914/Services/ArtikelWebService.svc/";
+var serviceUrl = "http://magazijn.vtir.be/Services/ArtikelWebService.svc/";
 
 /* pages */
 
