@@ -235,10 +235,7 @@ function loadAtikelDetailAfterBarcodeScan(data) {
     return false;
 }
 
-$(document).on('pagebeforeshow', '#scannen', function () {
-    //Hide the fields
-    $("#barcode_artikeldetail").hide();
-
+$(document).on('pageinit', '#scannen', function () {
     // are we running in native app or in browser?
     window.isphone = false;
     if (document.URL.indexOf("http://") === -1
@@ -251,6 +248,13 @@ $(document).on('pagebeforeshow', '#scannen', function () {
     } else {
         browserReady();
     }
+});
+
+
+$(document).on('pagebeforeshow', '#scannen', function () {
+    //Hide the fields
+    $("#barcode_artikeldetail").hide();
+    
 });
 
 function onDeviceReady() {
