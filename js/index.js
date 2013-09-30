@@ -221,7 +221,7 @@ function loadAtikelDetail(data) {
 
 function loadAtikelDetailAfterBarcodeScan(data) {
     $("#barcode_artikeldetail").show();
-    
+
     $("#artikel_titel").html('<h2>' + data.Titel + '<h2>');
     //$("#artikel_beschrijving").html('<p>' + data.Beschrijving + '</p>').css('text-align', 'center');
     $("#artikel_beschrijving").html('<p>' + data.Beschrijving + '</p>')
@@ -254,7 +254,6 @@ $(document).on('pageinit', '#scannen', function () {
 $(document).on('pagebeforeshow', '#scannen', function () {
     //Hide the fields
     $("#barcode_artikeldetail").hide();
-    
 });
 
 function onDeviceReady() {
