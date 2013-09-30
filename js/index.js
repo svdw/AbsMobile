@@ -202,7 +202,7 @@ function loadArtikelDetails(artikelID) {
 }
 
 function loadAtikelDetail(data) {
-    $("#artikelTitel").html('<span style="font-weight: bold;">' + data.Titel + '</span>');
+    $("#artikelTitel").html('<h2>' + data.Titel + '</h2>');
     $("#artikelBeschrijving").html('<p>' + data.Beschrijving + '</p>');
     $("#artikelAfbeelding").attr("src", "data:image/jpg;base64," + data.Afbeelding);
 
@@ -210,6 +210,7 @@ function loadAtikelDetail(data) {
     $("#lblArtikelStock").html(data.Stock);
     $("#lblArtikelPrijs").html(data.Catalogusprijs);
     $("#lblArtikelLeverancier").html(data.Leverancier);
+
     /*
     var $img = $('container_img img'),
         h = $img.height();
@@ -221,7 +222,7 @@ function loadAtikelDetail(data) {
 function loadAtikelDetailAfterBarcodeScan(data) {
     $("#barcode_artikeldetail").show();
     
-    $("#artikel_titel").append('<h2>' + data.Titel + '<h2>');
+    $("#artikel_titel").html('<h2>' + data.Titel + '<h2>');
     //$("#artikel_beschrijving").html('<p>' + data.Beschrijving + '</p>').css('text-align', 'center');
     $("#artikel_beschrijving").html('<p>' + data.Beschrijving + '</p>')
     $("#artikel_img").attr("src", "data:image/jpg;base64," + data.Afbeelding);
