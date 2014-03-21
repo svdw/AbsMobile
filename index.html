@@ -20,8 +20,7 @@
         </script>
     </head>
     <body> 
-	
-		<div data-role="page" id="home" data-add-back-btn="false">
+        <div data-role="page" id="home" data-add-back-btn="false">
 			<div data-role="header" data-position="fixed">
 				<h1>Artikelenbeheersysteem</h1>
 			</div>
@@ -142,6 +141,10 @@
                         </div>
                     </div>
 				    <div id="artikelBeschrijving"></div>
+                    <div>
+                        <a href="#ArtikelMeegeven" data-role="button">Uit</a><br />
+                        <a href="#ArtikelOntvangen" data-role="button">In</a>
+                    </div>
                 </div>
 			</div>
             <div data-role="footer" data-id="foo1" data-position="fixed">
@@ -171,6 +174,7 @@
                     <hr />
                 </div>
                 <div id="barcode_artikeldetail" class="artikeldetail_container" style="display: none;">
+                    <input type="hidden" id="hf_artikel_id" />
                     <div id="artikel_titel"></div>
                     <div class="artikelAfbeelding_container">
                         <img id="artikel_img" />
@@ -188,6 +192,13 @@
                         Leverancier: <span id="lblLeverancier"></span>
                     </div>      
 				    <div id="artikel_beschrijving"></div>
+                    <div>
+                        <!--
+                        <a href="#ArtikelMeegeven" data-role="button">Uit</a><br />
+                        <a href="#ArtikelOntvangen" data-role="button">In</a>
+                        -->
+                        <a href="#WijzigStock" data-role="button">Wijzig stock</a>
+                    </div>
                 </div>
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed">				
@@ -200,6 +211,123 @@
 			    </div><!-- /navbar -->
             </div><!-- /footer -->
 		</div>
-        <script type="text/javascript" src="js/index.min.js"></script>
+
+        <div data-role="page" id="WijzigStock" data-add-back-btn="false">
+            <div data-role="header" data-position="fixed">
+                <h1>Artikelenbeheersysteem</h1>
+            </div>
+            <div data-role="content">
+                <div id="aantal_in_stock">
+                    <div>
+                        <input type="hidden" id="hf_artikel_id_stockwijziging" />
+                        Artikel <span id="lblWijzigStockArtikelNaam"></span>
+                    </div>
+                    <div>
+                        Aantal in stock
+                    </div>
+                    <div>
+                        <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+                            <input type="number" data-clear-btn="false" name="txtAantalInStock" pattern="[0-9]*" id="txtAantalInStock" value="">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <a href="" data-role="button" class="opslaan_stockwijziging">Opslaan</a>
+                    </div>
+                </div>
+            </div>
+            <div data-role="footer" data-id="foo1" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="index.html" data-icon="home" data-iconpos="top">Start</a></li>
+                        <li><a href="#productgroep1" data-icon="grid" data-iconpos="top">Artikels</a></li>
+                        <li><a href="#scannen" data-icon="search" data-iconpos="top" class="ui-btn-active">Scannen</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
+        </div>
+
+        <div data-role="page" id="ArtikelMeegeven" data-add-back-btn="false">
+			<div data-role="header" data-position="fixed">
+				<h1>Artikelenbeheersysteem</h1>
+			</div>
+			<div data-role="content">
+				<div>
+                    <div>
+                        Projectbon     
+                    </div>
+                    <div>
+                        <select id="ddlProjectbonUit"></select>
+                    </div>
+                </div>
+                <div id="aantal_in">
+                    <div>
+                        Aantal
+                    </div>
+                    <div>
+                        <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+                            <input type="number" data-clear-btn="false" name="txtAantalUit" pattern="[0-9]*" id="txtAantalUit" value="">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <a href="" data-role="button">Opslaan</a>
+                    </div>
+                </div>
+			</div>
+			<div data-role="footer" data-id="foo1" data-position="fixed">				
+			    <div data-role="navbar">
+				    <ul>
+					    <li><a href="index.html" data-icon="home" data-iconpos="top">Start</a></li>
+                        <li><a href="#productgroep1" data-icon="grid" data-iconpos="top">Artikels</a></li>
+                        <li><a href="#scannen" data-icon="search" data-iconpos="top" class="ui-btn-active">Scannen</a></li>
+				    </ul>
+			    </div><!-- /navbar -->
+            </div><!-- /footer -->
+		</div>
+
+        <div data-role="page" id="ArtikelOntvangen" data-add-back-btn="false">
+			<div data-role="header" data-position="fixed">
+				<h1>Artikelenbeheersysteem</h1>
+			</div>
+			<div data-role="content">
+				<div>
+                    <div>
+                        Leveranciersbon
+                    </div>
+                    <div>
+                        <select id="ddlLeveranciersbonnenIn"></select>
+                    </div>
+                </div>
+                <div id="aantal_uit">
+                    <div>
+                        Aantal
+                    </div>
+                    <div>
+                        <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+                            <input type="number" data-clear-btn="false" name="txtAantalIn" pattern="[0-9]*" id="txtAantalIn" value="">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <a href="" data-role="button">Opslaan</a>
+                    </div>
+                </div>
+			</div>
+			<div data-role="footer" data-id="foo1" data-position="fixed">				
+			    <div data-role="navbar">
+				    <ul>
+					    <li><a href="index.html" data-icon="home" data-iconpos="top">Start</a></li>
+                        <li><a href="#productgroep1" data-icon="grid" data-iconpos="top">Artikels</a></li>
+                        <li><a href="#scannen" data-icon="search" data-iconpos="top" class="ui-btn-active">Scannen</a></li>
+				    </ul>
+			    </div><!-- /navbar -->
+            </div><!-- /footer -->
+		</div>
+        
+        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>

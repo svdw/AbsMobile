@@ -1,5 +1,5 @@
 /* Global */
-//var serviceUrl = "http://localhost:2914/Services/ArtikelWebService.svc/";
+//var serviceUrl = "http://localhost:3338/Services/ArtikelWebService.svc/";
 var serviceUrl = "http://magazijn.vtir.be/Services/ArtikelWebService.svc/";
 
 /* pages */
@@ -232,6 +232,8 @@ function loadAtikelDetailAfterBarcodeScan(data) {
     $("#lblPrijs").html(data.Catalogusprijs);
     $("#lblLeverancier").html(data.Leverancier);
 
+    $("#hf_artikel_id").val(data.ID);
+
     return false;
 }
 
@@ -297,3 +299,33 @@ function getArtikelByBarcode(barcode) {
         }
     });
 }
+
+$(document).on('pagebeforeshow', '#WijzigStock', function () {
+    $.mobile.showPageLoadingMsg();
+
+    $("#hf_artikel_id_stockwijziging").val($("#hf_artikel_id").val());
+
+    //Clear het vorige label
+    $("#hf_artikel_id").val("");
+});
+
+$('a.opslaan_stockwijziging').click(function () {
+    //Opslaan van de wijziging van het aantal in stock
+    var param = JSON.stringify({ artikelID: $("#hf_artikel_id_stockwijziging").val(), stock: $("#txtAantalInStock").val() });
+
+    $.ajax({
+        type: "POST",
+        url: serviceUrl + "SaveStockWijziging",
+        data: param,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+            alert(msg.d);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status + ' ' + xhr.response + ' ' + xhr.responseText + ' ' + thrownError);
+        }
+    });
+
+});
+
