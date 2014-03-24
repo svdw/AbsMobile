@@ -303,6 +303,7 @@ function getArtikelByBarcode(barcode) {
 $(document).on('pagebeforeshow', '#WijzigStock', function () {
     $.mobile.showPageLoadingMsg();
 
+    $("#lblWijzigStockArtikelNaam").html($("#artikel_titel").html());
     $("#hf_artikel_id_stockwijziging").val($("#hf_artikel_id").val());
 
     //Clear het vorige label
@@ -321,6 +322,8 @@ $('a.opslaan_stockwijziging').click(function () {
         dataType: "json",
         success: function (msg) {
             alert(msg.d);
+
+            clearStockWijzigingInput();
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status + ' ' + xhr.response + ' ' + xhr.responseText + ' ' + thrownError);
@@ -329,3 +332,7 @@ $('a.opslaan_stockwijziging').click(function () {
 
 });
 
+function clearStockWijzigingInput() {
+    $("#hf_artikel_id_stockwijziging").val("");
+    $("#txtAantalInStock").val("");
+}
